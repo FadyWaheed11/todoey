@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:todey/screens/add_task_screen.dart';
+import 'package:todey/widgets/task_list.dart';
 
 class TasksScreen extends StatelessWidget {
+
+  void showAddTask(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return AddTaskScreen();
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,20 +62,13 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: ListView(
-                children: <Widget>[
-                  ListTile(
-                    title: Text('My first task.'),
-                    trailing: Checkbox(value: false),
-                  ),
-                ],
-              ),
+              child: TaskList(),
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print('added'),
+        onPressed: () => showAddTask(context),
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
       ),
